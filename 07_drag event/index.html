@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Draggle</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2f363e;
+        gap: 50px;
+      }
+      .drag {
+        display: flex;
+        position: relative;
+        width: 320px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .dragTarget {
+        width: 100px;
+        height: 100px;
+        background-color: #0003;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 600;
+      }
+      button {
+        position: absolute;
+        bottom: 50px;
+        outline: none;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        border: none;
+        color: #222;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .dragBoxs {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .dragBox {
+        position: relative;
+        background-color: #0003;
+        width: 140px;
+        height: 140px;
+      }
+      .cell {
+        background-color: brown;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="drag" id="drag">
+      <div class="dragTarget">
+        <div
+          class="cell"
+          draggable="true"
+          id="block1"
+          ondragstart="drag(event)"
+        >
+          1
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          draggable="true"
+          id="block2"
+          ondragstart="drag(event)"
+        >
+          2
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          draggable="true"
+          id="block3"
+          ondragstart="drag(event)"
+        >
+          3
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          draggable="true"
+          id="block4"
+          ondragstart="drag(event)"
+        >
+          4
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          draggable="true"
+          id="block5"
+          ondragstart="drag(event)"
+        >
+          5
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          draggable="true"
+          id="block6"
+          ondragstart="drag(event)"
+        >
+          6
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          draggable="true"
+          id="block7"
+          ondragstart="drag(event)"
+        >
+          7
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          draggable="true"
+          id="block8"
+          ondragstart="drag(event)"
+        >
+          8
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          draggable="true"
+          id="block2"
+          ondragstart="drag(event)"
+        >
+          9
+        </div>
+      </div>
+    </div>
+    <button class="reset" onClick="window.location.reload()">reset</button>
+
+    <div class="dragBoxs">
+      <div
+        class="dragBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dragBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dragBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dragBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dragBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dragBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dragBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dragBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        class="dragBox"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+    </div>
+  </body>
+
+  <script>
+    function drag(event) {
+      event.dataTransfer.setData("text", event.target.id);
+    }
+
+    function allowDrop(event) {
+      event.preventDefault();
+    }
+
+    function drop(event) {
+      event.preventDefault();
+      let data = event.dataTransfer.getData("text");
+      event.target.appendChild(document.getElementById(data));
+    }
+
+    onload = function () {
+      let parent = document.getElementById("drag");
+      let frag = document.createDocumentFragment();
+      while (parent.children.length) {
+        frag.appendChild(
+          parent.children[Math.floor(Math.random() * parent.children.length)]
+        );
+      }
+
+      parent.appendChild(frag);
+    };
+  </script>
+</html>

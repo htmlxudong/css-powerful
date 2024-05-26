@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #222;
+        min-height: 100vh;
+        position: relative;
+      }
+      .spark {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        transform: translate(0, -20px);
+      }
+
+      .spark span {
+        position: absolute;
+        width: 2px;
+        height: 20px;
+        pointer-events: none;
+        border-radius: 2px;
+        overflow: hidden;
+        transform-origin: bottom; /* CSS 属性让你更改一个元素变形的原点。*/
+        filter: drop-shadow(0 0 20px #0f0) drop-shadow(0 0 40px #0f0);
+      }
+
+      .spark span::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+				background: #0f0;
+        animation: animate 1s ease-in-out forwards;
+      }
+
+      @keyframes animate {
+        0% {
+					transform: translateY(100%);
+        }
+				100%{
+					transform: translateY(-100%);
+				}
+      }
+    </style>
+  </head>
+  <body></body>
+  <script>
+    const body = document.body;
+    body.addEventListener("click", function (event) {
+      const spark = document.createElement("div");
+      spark.classList.add("spark");
+
+      for (let i = 0; i < 8; i++) {
+        const line = document.createElement("span");
+        line.style.transform = `rotate(${(i * 360) / 8}deg)`;
+        spark.appendChild(line);
+      }
+
+      body.appendChild(spark);
+      spark.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+      spark.style.left = event.clientX - body.offsetLeft + "px";
+      spark.style.top = event.clientY - body.offsetTop + "px";
+
+      const timer = setTimeout(() => {
+        spark.remove();
+        clearTimeout(timer);
+      }, 1000);
+    });
+  </script>
+</html>

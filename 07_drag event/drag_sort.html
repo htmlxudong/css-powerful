@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拖拽排序</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      border: 1px solid #ddd;
+      color: #fff;
+      font-weight: 600;
+      width: 400px;
+      padding: 10px;
+    }
+
+    .item {
+      cursor: pointer;
+      box-sizing: border-box;
+      background-color: #409eff;
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+
+    .move_border {
+      border: 1px solid #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="item" draggable="true" id="item1" ondragstart="onDragStart(event)" ondragover="onDrogOver(event)"
+      ondrop="onDrop(event)">1
+    </div>
+    <div class="item" draggable="true" id="item2" ondragstart="onDragStart(event)" ondragover="onDrogOver(event)"
+      ondrop="onDrop(event)">2</div>
+    <div class="item" draggable="true" id="item3" ondragstart="onDragStart(event)" ondragover="onDrogOver(event)"
+      ondrop="onDrop(event)">3</div>
+    <div class="item" draggable="true" id="item4" ondragstart="onDragStart(event)" ondragover="onDrogOver(event)"
+      ondrop="onDrop(event)">4</div>
+    <div class="item" draggable="true" id="item5" ondragstart="onDragStart(event)" ondragover="onDrogOver(event)"
+      ondrop="onDrop(event)">5</div>
+    <div class="item" draggable="true" id="item6" ondragstart="onDragStart(event)" ondragover="onDrogOver(event)"
+      ondrop="onDrop(event)">6</div>
+  </div>
+</body>
+
+<script>
+
+  let y = 0;
+  function onDragStart(event) {
+    event.dataTransfer.setData("text", event.target.id);
+    event.dataTransfer.effectAllowed = "copy";
+    event.target.classList.add('move_border')
+    y = event.clientY;
+  }
+
+  function onDrogOver(event) {
+    event.preventDefault()
+  }
+  function onDrop(event) {
+    const parentNode = event.target.parentNode;
+    const id = event.dataTransfer.getData('text');
+    const referenceNode = document.getElementById(id)
+    referenceNode.classList.remove('move_border')
+    // 往上拖,在当前节点前进行插入
+    // 往下拖,在下一个节点前进行插入
+    if (event.clientY - y < 0) {
+      parentNode.insertBefore(referenceNode, event.target)
+    } else {
+      parentNode.insertBefore(referenceNode, event.target.nextSibling)
+    }
+  }
+
+
+
+
+</script>
+
+</html>

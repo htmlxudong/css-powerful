@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #eff0f4;
+        min-height: 100vh;
+      }
+
+      .container {
+        width: 63%;
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .title_box {
+        width: 400px;
+        color: #e0e2e6;
+      }
+      .title_box .title {
+        font-size: 100px;
+        letter-spacing: 10px;
+        font-weight: 600;
+        display: flex;
+      }
+      .title_box .descript {
+        font-size: 30px;
+        font-weight: 600;
+      }
+      .title_box .descript .key {
+        color: #ff0f5b;
+      }
+      .drop_box {
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+      }
+      .title_box .title .drop_small {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        box-shadow: inset 4px 7px 5px rgba(0, 0, 0, 0.05),
+          10px 8px 8px rgba(0, 0, 0, 0.05), 2px 4px 5px rgba(0, 0, 0, 0.05),
+          inset -10px -10px 10px rgba(255, 255, 255, 0.05);
+        border-radius: 46% 54% 48% 52% / 38% 61% 39% 62%;
+        position: relative;
+      }
+      .title_box .title .drop_small::after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: #fff;
+        opacity: 0.9;
+      }
+      .title_box .title .drop_small::before {
+        content: "";
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #fff;
+        opacity: 0.9;
+      }
+
+      .container .drop {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05),
+          25px 35px 20px rgba(0, 0, 0, 0.05), 25px 35px 20px rgba(0, 0, 0, 0.05),
+          inset -20px -20px 25px rgba(255, 255, 255, 0.05);
+        border-radius: 46% 54% 48% 52% / 38% 61% 39% 62%;
+        transition: 0.5s;
+      }
+
+      .container .drop:hover {
+        border-radius: 50%;
+      }
+      .container .drop::before {
+        content: "";
+        position: absolute;
+        top: 70px;
+        left: 85px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #fff;
+        opacity: 0.9;
+      }
+      .container .drop::after {
+        content: "";
+        position: absolute;
+        top: 110px;
+        left: 120px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #fff;
+        opacity: 0.9;
+      }
+      .container .drop .content {
+        width: 70%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 0 20px 20px 20px;
+        gap: 20px;
+      }
+
+      .container .drop .content h2 {
+        position: relative;
+        color: #333;
+        font-size: 1.5em;
+      }
+      .container .drop .content form {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+      .container .drop .content form .inputBox {
+        position: relative;
+        width: 350px;
+        box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.1),
+          inset -2px -5px 10px rgba(255, 255, 255, 1),
+          15px 15px 10px rgba(0, 0, 0, 0.05),
+          15px 10px 15px rgba(255, 255, 255, 0.025);
+        border-radius: 25px;
+      }
+      .container .drop .content form .inputBox::before {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 65%;
+        height: 7px;
+        background: rgba(255, 255, 255, 0.65);
+        border-radius: 5px;
+      }
+      .container .drop .content form .inputBox input {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        width: 100%;
+        font-size: 1em;
+        padding: 10px 15px;
+      }
+      .container .drop .content form .inputBox input[type="submit"] {
+        background: #ff0f5b;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.9);
+        border-radius: 30px;
+        letter-spacing: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 18px;
+      }
+      .container .drop .content form .inputBox:last-child {
+        background: #ff0f5b;
+        width: 200px;
+        margin: 0 auto;
+        padding: 5px 0;
+        box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.1),
+          15px 15px 10px rgba(0, 0, 0, 0.05),
+          15px 10px 15px rgba(255, 255, 255, 0.025);
+      }
+
+      .link_box {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        transform: translate(20px, 150px);
+        color: #fff;
+        font-size: 25px;
+      }
+      .link_box .signup {
+        position: relative;
+        background-color: #a919da;
+        width: 150px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05),
+          25px 35px 20px rgba(0, 0, 0, 0.05), 25px 35px 20px rgba(0, 0, 0, 0.05),
+          inset -20px -20px 25px rgba(255, 255, 255, 0.35);
+        border-radius: 59% 41% 47% 53% / 38% 42% 58% 62%;
+      }
+      .link_box .signup::before {
+        content: "";
+        position: absolute;
+        top: 25px;
+        left: 26px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.6);
+        opacity: 0.9;
+      }
+
+      .link_box .forget {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        height: 200px;
+        background-color: #04b4ff;
+        box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05),
+          25px 35px 20px rgba(0, 0, 0, 0.05), 25px 35px 20px rgba(0, 0, 0, 0.05),
+          inset -20px -20px 25px rgba(255, 255, 255, 0.35);
+        border-radius: 52% 48% 37% 63% / 55% 41% 59% 45% ;
+      }
+
+      .link_box .forget::before {
+        content: "";
+        position: absolute;
+        top: 30px;
+        left: 60px;
+        width: 30px;
+        height:30px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.6);
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div class="title_box">
+          <div class="title">
+            <div class="font">L</div>
+            <div class="font">O</div>
+            <div class="font">G</div>
+            <div class="font">I</div>
+            <div class="font">N</div>
+          </div>
+          <div class="title">
+            <div class="font">D</div>
+            <div class="font">R</div>
+            <div class="font drop_box">
+              <div class="drop_small"></div>
+            </div>
+            <div class="font">P</div>
+          </div>
+          <div class="descript">
+            Join the new world of <span class="key">UI</span>.
+          </div>
+        </div>
+        <div class="drop">
+          <div class="content">
+            <h2>HR系统</h2>
+            <form>
+              <div class="inputBox">
+                <input type="text" placeholder="Username" />
+              </div>
+              <div class="inputBox">
+                <input type="password" placeholder="Password" />
+              </div>
+              <div class="inputBox">
+                <input type="submit" value="Login" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="link_box">
+        <div class="signup">signup</div>
+        <div class="forget">
+          <div>
+            <div class="link">forget</div>
+            <div class="link">password</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

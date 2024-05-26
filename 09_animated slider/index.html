@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: #222;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      input {
+        appearance: none;
+      }
+
+      .dots {
+        position: absolute;
+        bottom: 70px;
+        z-index: 1000;
+        display: flex;
+        gap: 6px;
+      }
+
+      .dots label {
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        opacity: 0.5;
+        border: 2px solid #222;
+      }
+
+      input:nth-child(1):checked ~ .dots label:nth-child(1),
+      input:nth-child(2):checked ~ .dots label:nth-child(2),
+      input:nth-child(3):checked ~ .dots label:nth-child(3),
+      input:nth-child(4):checked ~ .dots label:nth-child(4),
+      input:nth-child(5):checked ~ .dots label:nth-child(5) {
+        opacity: 1;
+      }
+
+      .slider {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+
+      .slider .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: var(--img);
+        /* background-size: cover; */
+        clip-path: circle(0% at 0% 50%);
+        transition: 1.5s;
+        transition-delay: 0s;
+        background-position: left;
+      }
+
+      .slide:nth-child(even) {
+        clip-path: circle(0% at 100% 50%);
+        background-position: right;
+      }
+
+      input:nth-child(1):checked ~ .slider .slide:nth-child(1),
+      input:nth-child(2):checked ~ .slider .slide:nth-child(2),
+      input:nth-child(3):checked ~ .slider .slide:nth-child(3),
+      input:nth-child(4):checked ~ .slider .slide:nth-child(4),
+      input:nth-child(5):checked ~ .slider .slide:nth-child(5) {
+        /* opacity: 1; */
+        clip-path: circle(150% at 50% 50%);
+        transition-delay: 1s;
+        background-position: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input id="slide1" type="radio" name="group" checked />
+      <input id="slide2" type="radio" name="group" />
+      <input id="slide3" type="radio" name="group" />
+      <input id="slide4" type="radio" name="group" />
+      <input id="slide5" type="radio" name="group" />
+      <div class="dots">
+        <label for="slide1"></label>
+        <label for="slide2"></label>
+        <label for="slide3"></label>
+        <label for="slide4"></label>
+        <label for="slide5"></label>
+      </div>
+
+      <div class="slider">
+        <div class="slide" for="slide1" style="--img: url('1.webp')"></div>
+        <div class="slide" for="slide2" style="--img: url('2.webp')"></div>
+        <div class="slide" for="slide3" style="--img: url('3.webp')"></div>
+        <div class="slide" for="slide4" style="--img: url('4.webp')"></div>
+        <div class="slide" for="slid5" style="--img: url('5.webp')"></div>
+      </div>
+    </div>
+  </body>
+</html>

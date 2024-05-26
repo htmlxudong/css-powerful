@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1a252c;
+      }
+
+      .container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform-style: preserve-3d;
+      }
+      .container img {
+        width: 120px;
+        height: 120px;
+        position: relative;
+        transform-origin: bottom center;
+        -webkit-box-reflect: below 1px linear-gradient(transparent, #0002);
+        transition: 0.5s;
+      }
+
+      .hovered {
+        transform: perspective(500px) rotateY(0deg) scale(1.5);
+        z-index: 1000;
+      }
+      .prev {
+        margin: 0 -20px;
+        transform: perspective(500px) rotateY(45deg) scale(0.95);
+      }
+      .next {
+        margin: 0 -20px;
+        transform: perspective(500px) rotateY(-45deg) scale(0.95);
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="./1.webp" alt="" />
+      <img src="./2.webp" alt="" />
+      <img src="./3.webp" alt="" />
+      <img src="./4.webp" alt="" />
+      <img src="./5.webp" alt="" />
+    </div>
+  </body>
+  <script>
+    document.querySelectorAll("img").forEach((node, index, images) => {
+      node.addEventListener("mouseover", function (event) {
+        images.forEach((b, i) => {
+          let className = i < index ? "prev" : i === index ? "hovered" : "next";
+          b.classList.remove("prev", "hovered", "next");
+          b.classList.add(className);
+        });
+      });
+      node.addEventListener("mouseleave", function (event) {
+        images.forEach((b, i) => {
+          b.classList.remove("prev", "hovered", "next");
+        });
+      });
+    });
+  </script>
+</html>

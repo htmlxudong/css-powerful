@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draggle</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2f363e;
+        gap: 50px;
+      }
+
+      .container {
+        color: #fff;
+        display: flex;
+        flex-wrap: wrap;
+        width: 322px;
+        gap: 10px;
+      }
+      .dragTarget {
+        width: 100px;
+        height: 100px;
+        background-color: #0003;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: orange;
+        width: 80px;
+        height: 80px;
+        font-weight: 600;
+        font-size: 1.2em;
+      }
+      .dragBox {
+        background-color: #535c68;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="dragTarget">
+        <div
+          class="cell"
+          ondragstart="dragStart(event)"
+          draggable="true"
+          id="box1"
+        >
+          1
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          ondragstart="dragStart(event)"
+          draggable="true"
+          id="box2"
+        >
+          2
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          ondragstart="dragStart(event)"
+          draggable="true"
+          id="box3"
+        >
+          3
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          ondragstart="dragStart(event)"
+          draggable="true"
+          id="box4"
+        >
+          4
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          ondragstart="dragStart(event)"
+          draggable="true"
+          id="box5"
+        >
+          5
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          ondragstart="dragStart(event)"
+          draggable="true"
+          id="box6"
+        >
+          6
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          ondragstart="dragStart(event)"
+          draggable="true"
+          id="box7"
+        >
+          7
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          ondragstart="dragStart(event)"
+          draggable="true"
+          id="box8"
+        >
+          8
+        </div>
+      </div>
+      <div class="dragTarget">
+        <div
+          class="cell"
+          ondragstart="dragStart(event)"
+          draggable="true"
+          id="box9"
+        >
+          9
+        </div>
+      </div>
+    </div>
+    <div class="container" id="dragBoxs">
+      <div
+        class="dragTarget dragBox"
+        ondragover="DropOver(event)"
+        ondrop="Drop(event)"
+      ></div>
+      <div class="dragTarget dragBox"></div>
+      <div class="dragTarget dragBox"></div>
+      <div class="dragTarget dragBox"></div>
+      <div class="dragTarget dragBox"></div>
+      <div class="dragTarget dragBox"></div>
+      <div class="dragTarget dragBox"></div>
+      <div class="dragTarget dragBox"></div>
+      <div class="dragTarget dragBox"></div>
+    </div>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function (event) {});
+
+    function dragStart(event) {
+      event.dataTransfer.setData("id", event.target.getAttribute('id'));
+    }
+
+    function Drop(event) {
+      const target = event.dataTransfer.getData("id");
+      console.log(event, target, "Drop");
+      event.preventDefault();
+    }
+
+    function DropOver(event) {
+      event.preventDefault();
+    }
+  </script>
+</html>

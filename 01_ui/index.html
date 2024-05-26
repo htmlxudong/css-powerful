@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .wrapper {
+        width: 100vw;
+        height: 100vh;
+        background-color: #4b90e1;
+        position: relative;
+      }
+      .wrapper .wrapper-top {
+        padding: 40px 40px 40px 40px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .wrapper .wrapper-content {
+        width: 820px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      .wrapper .wrapper-content .wrapper-content-title {
+        color: #fff;
+        font-size: 20px;
+        padding: 10px;
+      }
+      .wrapper .wrapper-containers {
+        padding: 40px 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+        backdrop-filter: blur(4px);
+      }
+      .wrapper .wrapper-containers .item {
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-bottom: 30px;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+      .wrapper .wrapper-containers .item:hover .item-logo {
+        user-select: none;
+        transform: translateY(-10px);
+        background-color: rgba(255, 255, 255, 0.35);
+        color: hsl(0, 0%, 100%);
+        filter: drop-shadow(0 0 1em rgba(100, 108, 255, 0.6666666667));
+      }
+      .wrapper .wrapper-containers .item-logo {
+        color: #e6f4ff;
+        border-radius: 20px;
+        width: 120px;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(4px);
+        transition: transform 0.2s, background-color 0.2s, color 0.2s,
+          filter 0.2s ease;
+      }
+      .wrapper .wrapper-containers .item-logo .item-title {
+        font-weight: 600;
+        font-size: 20px;
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        --clr: rgb(127, 207, 255);
+        --clr-alpha: rgb(127, 207, 255, 0.1);
+        animation: spinner 4s infinite linear;
+        transform-style: preserve-3d;
+      }
+
+      .spinner > div {
+        background-color: var(--clr-alpha);
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        border: 3px solid var(--clr);
+      }
+
+      .spinner div:nth-of-type(1) {
+        transform: translateZ(-22px) rotateY(180deg);
+      }
+
+      .spinner div:nth-of-type(2) {
+        transform: rotateY(-270deg) translateX(50%);
+        transform-origin: top right;
+      }
+
+      .spinner div:nth-of-type(3) {
+        transform: rotateY(270deg) translateX(-50%);
+        transform-origin: center left;
+      }
+
+      .spinner div:nth-of-type(4) {
+        transform: rotateX(90deg) translateY(-50%);
+        transform-origin: top center;
+      }
+
+      .spinner div:nth-of-type(5) {
+        transform: rotateX(-90deg) translateY(50%);
+        transform-origin: bottom center;
+      }
+
+      .spinner div:nth-of-type(6) {
+        transform: translateZ(22px);
+      }
+
+      @keyframes spinner {
+        0% {
+          transform: rotate(0deg) rotateX(0deg) rotateY(0deg);
+        }
+        50% {
+          transform: rotate(180deg) rotateX(180deg) rotateY(180deg);
+        }
+        100% {
+          transform: rotate(360deg) rotateX(360deg) rotateY(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="wrapper-top">
+        <div class="spinner">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+      <div class="wrapper-content">
+        <h2 class="wrapper-content-title">🔥 请选择您的项目:</h2>
+        <div class="wrapper-containers">
+          <div class="item">
+            <div class="item-logo"><div class="item-title">P0111</div></div>
+          </div>
+          <div class="item">
+            <div class="item-logo"><div class="item-title">P0112</div></div>
+          </div>
+          <div class="item">
+            <div class="item-logo"><div class="item-title">P0113</div></div>
+          </div>
+          <div class="item">
+            <div class="item-logo"><div class="item-title">P0114</div></div>
+          </div>
+          <div class="item">
+            <div class="item-logo"><div class="item-title">P0115</div></div>
+          </div>
+          <div class="item">
+            <div class="item-logo"><div class="item-title">P0116</div></div>
+          </div>
+          <div class="item">
+            <div class="item-logo"><div class="item-title">P0117</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
