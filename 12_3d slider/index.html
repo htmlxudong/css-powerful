@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #222;
+        transform-style: preserve-3d;
+      }
+
+      .box {
+        position: relative;
+        display: flex;
+        transform-style: preserve-3d;
+        perspective: 500px;
+      }
+      .item {
+        width: 200px;
+        height: 300px;
+        position: absolute;
+        top: calc(50% - 150px);
+        left: calc(50% - 100px);
+        background-color: #fff;
+        transition: 0.5s;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+        transform-origin: bottom;
+        transform-style: preserve-3d;
+        user-select: none;
+        -webkit-box-reflect: below 1px
+          linear-gradient(transparent, transparent, #0002); /* 该特性是非标准的，请尽量不要在生产环境中使用它！ */
+      }
+
+      .item:nth-child(1) {
+        transform: translate3d(-250px, 0, 0) scale(0.8) rotateY(25deg);
+        z-index: 1;
+      }
+      .item:nth-child(2) {
+        transform: translate3d(-250px, 0, 0) scale(0.8) rotateY(25deg);
+        z-index: 2;
+      }
+      .item:nth-child(3) {
+        transform: translate3d(-150px, 0, 0) scale(0.9) rotateY(15deg);
+        z-index: 3;
+      }
+      .item:nth-child(4) {
+        transform: translate3d(0px, 0, 0) scale(1) rotateY(0deg);
+        z-index: 4;
+      }
+      .item:nth-child(5) {
+        transform: translate3d(150px, 0, 0) scale(0.9) rotateY(-15deg);
+        z-index: 3;
+      }
+      .item:nth-child(6) {
+        transform: translate3d(250px, 0, 0) scale(0.8) rotateY(-25deg);
+        z-index: 2;
+      }
+      .item:nth-child(7) {
+        transform: translate3d(250px, 0, 0) scale(0.8) rotateY(-25deg);
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="item"><img src="./img/1.webp" alt=""></div>
+      <div class="item"><img src="./img/2.webp" alt=""></div>
+      <div class="item"><img src="./img/3.webp" alt=""></div>
+      <div class="item"><img src="./img/4.webp" alt=""></div>
+      <div class="item"><img src="./img/5.webp" alt=""></div>
+      <div class="item"><img src="./img/6.webp" alt=""></div>
+      <div class="item"><img src="./img/7.webp" alt=""></div>
+    </div>
+  </body>
+</html>
