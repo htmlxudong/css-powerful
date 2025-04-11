@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			html,
+			body {
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				perspective: 700px; /* 观察者到 3D 平面的距离 */
+				/* transform-style: preserve-3d;  */
+				background: #1b2333;
+			}
+			.card {
+				width: 650px;
+				height: 350px;
+				border-radius: 10px;
+				background-color: blueviolet;
+				/* transform: rotateX(2deg) rotateY(-3deg); */
+				transition: transform 0.15s;
+				transform: rotateX(var(--x, 0deg)) rotateY(var(--y, 0deg));
+			}
+			.card img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 10px;
+				box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.15);
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="card" style="--x: 0deg; --y: 0deg">
+			<img src="./imgs/01.webp" alt="" />
+		</div>
+	</body>
+
+	<script>
+		/*
+		 * 1. y 正，往上旋转，反之往下
+       2. x 正，往右旋转，反之往左
+       判断区间：
+       第一区间：x 为负，y 为正
+       第二区间：x 为正，y 为正
+       第三区间：x 为正，y 为负
+       第四区间：x 为负，y 为负
+		 */
+		const card = document.querySelector(".card");
+		const range = [-5, 5];
+		card.addEventListener("mousemove", event => {
+			const { offsetX, offsetY } = event;
+			const halfwidth = 650 / 2;
+			const halfheight = 350 / 2;
+
+			const x = offsetX - halfwidth;
+			const y = offsetY - halfheight;
+
+			let degX = (5 / halfwidth) * x;
+			let degY = (5 / halfheight) * y;
+
+			if (x < 0 && y < 0) {
+				degX = -Math.abs(degX);
+				degY = Math.abs(degY);
+			}
+			if (x > 0 && y < 0) {
+				degX = Math.abs(degX);
+				degY = Math.abs(degY);
+			}
+			if (x > 0 && y > 0) {
+				degX = Math.abs(degX);
+				degY = -Math.abs(degY);
+			}
+			if (x < 0 && y > 0) {
+				degX = -Math.abs(degX);
+				degY = -Math.abs(degY);
+			}
+
+			// console.log(degX, degY);
+			card.style.setProperty("--x", `${degY}deg`);
+			card.style.setProperty("--y", `${degX}deg`);
+		});
+
+		card.addEventListener("mouseleave", e => {
+			card.style.setProperty("--x", `0deg`);
+			card.style.setProperty("--y", `0deg`);
+		});
+	</script>
+</html>
